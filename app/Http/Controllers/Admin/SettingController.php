@@ -21,14 +21,6 @@ class SettingController extends Controller
     }
 
     /**
-     * Show the form for creating a new setting
-     */
-    public function create()
-    {
-        return view('admin.settings.create');
-    }
-
-    /**
      * Store a newly created setting in storage
      */
     public function store(Request $request)
@@ -48,22 +40,6 @@ class SettingController extends Controller
 
         return redirect()->route('admin.settings.index')
             ->with('success', 'Ayar başarıyla oluşturuldu.');
-    }
-
-    /**
-     * Display the specified setting
-     */
-    public function show(Setting $setting)
-    {
-        return view('admin.settings.show', compact('setting'));
-    }
-
-    /**
-     * Show the form for editing the specified setting
-     */
-    public function edit(Setting $setting)
-    {
-        return view('admin.settings.edit', compact('setting'));
     }
 
     /**
