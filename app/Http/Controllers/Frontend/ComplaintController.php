@@ -9,7 +9,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ComplaintController extends Controller
+class ComplaintController extends SafeController
 {
     /**
      * Display a listing of complaints

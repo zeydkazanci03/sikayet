@@ -7,7 +7,7 @@ use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class PageController extends Controller
+class PageController extends SafeController
 {
     /**
      * Display a listing of pages

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class AnalyticsController extends Controller
+class AnalyticsController extends SafeController
 {
     /**
      * Display analytics dashboard

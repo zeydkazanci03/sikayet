@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-class BlogController extends Controller
+class BlogController extends SafeController
 {
     /**
      * Display a listing of blog posts

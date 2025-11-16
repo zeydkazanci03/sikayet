@@ -9,7 +9,7 @@ use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ModerationController extends Controller
+class ModerationController extends SafeController
 {
     /**
      * Display the moderation dashboard

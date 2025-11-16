@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules\Password as PasswordRule;
 
-class ResetPasswordController extends Controller
+class ResetPasswordController extends SafeController
 {
     /**
      * Şifre sıfırlama formunu göster

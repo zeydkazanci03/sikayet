@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Auth\Events\Registered;
 
-class RegisterController extends Controller
+class RegisterController extends SafeController
 {
     /**
      * Kayıt formunu göster

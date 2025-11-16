@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-class CategoryController extends Controller
+class CategoryController extends SafeController
 {
     /**
      * Display a listing of categories

@@ -9,7 +9,7 @@ use App\Models\Category;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends SafeController
 {
     /**
      * Display the homepage

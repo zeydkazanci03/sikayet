@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Log;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends SafeController
 {
     /**
      * Şifremi unuttum formunu göster

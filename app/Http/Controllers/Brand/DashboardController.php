@@ -8,7 +8,7 @@ use App\Models\Complaint;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class DashboardController extends Controller
+class DashboardController extends SafeController
 {
     /**
      * Display the brand dashboard with statistics

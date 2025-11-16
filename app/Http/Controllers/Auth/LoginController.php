@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\RateLimiter;
 
-class LoginController extends Controller
+class LoginController extends SafeController
 {
     /**
      * Giriş formunu göster

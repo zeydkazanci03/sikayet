@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Complaint;
 use Illuminate\Http\Request;
 
-class ComplaintController extends Controller
+class ComplaintController extends SafeController
 {
     /**
      * Display a listing of brand's complaints

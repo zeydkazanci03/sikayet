@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
-class SettingController extends Controller
+class SettingController extends SafeController
 {
     /**
      * Display a listing of settings

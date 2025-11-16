@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
-class ProfileController extends Controller
+class ProfileController extends SafeController
 {
     /**
      * Display the user's profile

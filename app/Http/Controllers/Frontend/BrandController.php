@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\SafeController;
 use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class BrandController extends Controller
+class BrandController extends SafeController
 {
     /**
      * Display a listing of brands

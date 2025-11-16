@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-class ProfileController extends Controller
+class ProfileController extends SafeController
 {
     /**
      * Show the form for editing brand profile

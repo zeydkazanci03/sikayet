@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class BlogController extends SafeController
 {
     /**
      * Display a listing of blog posts

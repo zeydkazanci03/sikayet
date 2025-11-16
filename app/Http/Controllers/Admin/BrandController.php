@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-class BrandController extends Controller
+class BrandController extends SafeController
 {
     /**
      * Display a listing of brands
