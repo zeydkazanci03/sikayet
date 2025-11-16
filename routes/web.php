@@ -44,6 +44,12 @@ Route::middleware('guest')->group(function () {
     Route::post('/giris', 'App\Http\Controllers\Auth\LoginController@login');
     Route::get('/kayit', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('/kayit', 'App\Http\Controllers\Auth\RegisterController@register');
+
+    // Password reset routes
+    Route::get('/sifremi-unuttum', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('/sifremi-unuttum', 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('/sifre-sifirla/{token}', 'App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('/sifre-sifirla', 'App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.update');
 });
 
 // Authenticated User Routes
