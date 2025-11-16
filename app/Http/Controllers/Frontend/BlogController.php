@@ -33,7 +33,7 @@ class BlogController extends Controller
                 $query->oldest('published_at');
                 break;
             case 'popular':
-                $query->orderBy('views', 'desc');
+                $query->orderBy('view_count', 'desc');
                 break;
             default:
                 $query->latest('published_at');
@@ -56,7 +56,7 @@ class BlogController extends Controller
 
         // Popular posts for sidebar
         $popularPosts = Blog::where('status', 'published')
-            ->orderBy('views', 'desc')
+            ->orderBy('view_count', 'desc')
             ->take(5)
             ->get();
 
@@ -79,7 +79,7 @@ class BlogController extends Controller
             ->firstOrFail();
 
         // Increment views
-        $post->increment('views');
+        $post->increment('view_count');
 
         // Related posts
         $relatedPosts = Blog::where('status', 'published')

@@ -24,8 +24,8 @@ class ProfileController extends Controller
             'total_complaints' => $user->complaints()->count(),
             'pending_complaints' => $user->complaints()->where('status', 'pending')->count(),
             'approved_complaints' => $user->complaints()->where('status', 'approved')->count(),
-            'solved_complaints' => $user->complaints()->where('is_solved', true)->count(),
-            'total_comments' => $user->comments()->count(),
+            'solved_complaints' => $user->complaints()->where('is_resolved', true)->count(),
+            'total_comments' => $user->complaintComments()->count(),
         ];
 
         // Recent activity
@@ -100,8 +100,8 @@ class ProfileController extends Controller
         }
 
         // Filter by solved
-        if ($request->filled('is_solved')) {
-            $query->where('is_solved', $request->is_solved);
+        if ($request->filled('is_resolved')) {
+            $query->where('is_resolved', $request->is_resolved);
         }
 
         // Sort
@@ -111,7 +111,7 @@ class ProfileController extends Controller
                 $query->oldest();
                 break;
             case 'most_viewed':
-                $query->orderBy('views', 'desc');
+                $query->orderBy('view_count', 'desc');
                 break;
             case 'most_commented':
                 $query->withCount('comments')->orderBy('comments_count', 'desc');
@@ -128,7 +128,7 @@ class ProfileController extends Controller
             'pending' => $user->complaints()->where('status', 'pending')->count(),
             'approved' => $user->complaints()->where('status', 'approved')->count(),
             'rejected' => $user->complaints()->where('status', 'rejected')->count(),
-            'solved' => $user->complaints()->where('is_solved', true)->count(),
+            'solved' => $user->complaints()->where('is_resolved', true)->count(),
         ];
 
         return view('frontend.profile.complaints', compact('complaints', 'stats'));

@@ -33,7 +33,7 @@ class HomeController extends Controller
         // Popular complaints (most viewed)
         $popularComplaints = Complaint::with(['user', 'brand', 'category'])
             ->where('status', 'approved')
-            ->orderBy('views', 'desc')
+            ->orderBy('view_count', 'desc')
             ->take(10)
             ->get();
 
@@ -57,7 +57,7 @@ class HomeController extends Controller
         $stats = [
             'total_complaints' => Complaint::where('status', 'approved')->count(),
             'total_brands' => Brand::where('status', 'approved')->count(),
-            'solved_complaints' => Complaint::where('status', 'approved')->where('is_solved', true)->count(),
+            'solved_complaints' => Complaint::where('status', 'approved')->where('is_resolved', true)->count(),
             'total_users' => \App\Models\User::count(),
         ];
 
@@ -95,7 +95,7 @@ class HomeController extends Controller
             ->where('status', 'approved')
             ->where(function($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('description', 'like', "%{$query}%")
+                  ->orWhere('content', 'like', "%{$query}%")
                   ->orWhere('complaint_number', 'like', "%{$query}%");
             })
             ->latest()

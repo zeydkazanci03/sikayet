@@ -30,8 +30,8 @@ class ComplaintController extends Controller
         }
 
         // Filter by solved status
-        if ($request->filled('is_solved')) {
-            $query->where('is_solved', $request->is_solved);
+        if ($request->filled('is_resolved')) {
+            $query->where('is_resolved', $request->is_resolved);
         }
 
         // Search
@@ -39,7 +39,7 @@ class ComplaintController extends Controller
             $search = $request->search;
             $query->where(function($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%");
+                  ->orWhere('content', 'like', "%{$search}%");
             });
         }
 
@@ -47,7 +47,7 @@ class ComplaintController extends Controller
         $sort = $request->get('sort', 'latest');
         switch ($sort) {
             case 'popular':
-                $query->orderBy('views', 'desc');
+                $query->orderBy('view_count', 'desc');
                 break;
             case 'oldest':
                 $query->oldest();
@@ -82,7 +82,7 @@ class ComplaintController extends Controller
             ->firstOrFail();
 
         // Increment views
-        $complaint->increment('views');
+        $complaint->incrementViewCount();
 
         // Get related complaints (same brand or category)
         $relatedComplaints = Complaint::with(['user', 'brand'])
@@ -131,7 +131,7 @@ class ComplaintController extends Controller
             'brand_id' => 'required|exists:brands,id',
             'category_id' => 'required|exists:categories,id',
             'title' => 'required|string|max:255',
-            'description' => 'required|string|min:50',
+            'content' => 'required|string|min:50',
             'images.*' => 'nullable|image|max:2048',
         ]);
 

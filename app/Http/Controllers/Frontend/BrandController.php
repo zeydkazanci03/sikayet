@@ -85,14 +85,14 @@ class BrandController extends Controller
         $latestComplaints = (clone $complaintsQuery)->latest()->take(10)->get();
 
         // Get popular complaints
-        $popularComplaints = (clone $complaintsQuery)->orderBy('views', 'desc')->take(10)->get();
+        $popularComplaints = (clone $complaintsQuery)->orderBy('view_count', 'desc')->take(10)->get();
 
         // Statistics
         $stats = [
             'total_complaints' => $brand->complaints()->where('status', 'approved')->count(),
             'pending_complaints' => $brand->complaints()->where('status', 'pending')->count(),
-            'solved_complaints' => $brand->complaints()->where('status', 'approved')->where('is_solved', true)->count(),
-            'total_views' => $brand->complaints()->where('status', 'approved')->sum('views'),
+            'solved_complaints' => $brand->complaints()->where('status', 'approved')->where('is_resolved', true)->count(),
+            'total_views' => $brand->complaints()->where('status', 'approved')->sum('view_count'),
             'response_rate' => $this->calculateResponseRate($brand),
             'resolution_rate' => $this->calculateResolutionRate($brand),
         ];
@@ -159,7 +159,7 @@ class BrandController extends Controller
 
         $responded = $brand->complaints()
             ->where('status', 'approved')
-            ->whereNotNull('responded_at')
+            ->whereNotNull('brand_first_response_at')
             ->count();
 
         return round(($responded / $total) * 100, 2);
@@ -178,7 +178,7 @@ class BrandController extends Controller
 
         $solved = $brand->complaints()
             ->where('status', 'approved')
-            ->where('is_solved', true)
+            ->where('is_resolved', true)
             ->count();
 
         return round(($solved / $total) * 100, 2);
