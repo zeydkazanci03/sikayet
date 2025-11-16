@@ -46,11 +46,6 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->index(['complaint_number']);
-            $table->index(['user_id']);
-            $table->index(['brand_id']);
-            $table->index(['status']);
-            $table->index(['priority']);
             $table->fullText(['title', 'content']);
         });
     }
