@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -13,7 +13,7 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Blog::with('author')
+        $query = BlogPost::with('author')
             ->where('status', 'published');
 
         // Search
@@ -42,20 +42,20 @@ class BlogController extends Controller
         $posts = $query->paginate(12);
 
         // Featured posts
-        $featuredPosts = Blog::where('status', 'published')
+        $featuredPosts = BlogPost::where('status', 'published')
             ->where('is_featured', true)
             ->latest('published_at')
             ->take(3)
             ->get();
 
         // Recent posts for sidebar
-        $recentPosts = Blog::where('status', 'published')
+        $recentPosts = BlogPost::where('status', 'published')
             ->latest('published_at')
             ->take(5)
             ->get();
 
         // Popular posts for sidebar
-        $popularPosts = Blog::where('status', 'published')
+        $popularPosts = BlogPost::where('status', 'published')
             ->orderBy('view_count', 'desc')
             ->take(5)
             ->get();
@@ -73,7 +73,7 @@ class BlogController extends Controller
      */
     public function show($slug)
     {
-        $post = Blog::with('author')
+        $post = BlogPost::with('author')
             ->where('slug', $slug)
             ->where('status', 'published')
             ->firstOrFail();
@@ -82,14 +82,14 @@ class BlogController extends Controller
         $post->increment('view_count');
 
         // Related posts
-        $relatedPosts = Blog::where('status', 'published')
+        $relatedPosts = BlogPost::where('status', 'published')
             ->where('id', '!=', $post->id)
             ->latest('published_at')
             ->take(3)
             ->get();
 
         // Recent posts for sidebar
-        $recentPosts = Blog::where('status', 'published')
+        $recentPosts = BlogPost::where('status', 'published')
             ->where('id', '!=', $post->id)
             ->latest('published_at')
             ->take(5)

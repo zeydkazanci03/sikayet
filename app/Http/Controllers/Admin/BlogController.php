@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +15,7 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Blog::with('author');
+        $query = BlogPost::with('author');
 
         // Search
         if ($request->filled('search')) {
@@ -51,7 +51,7 @@ class BlogController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255|unique:blogs',
+            'slug' => 'nullable|string|max:255|unique:blog_posts',
             'content' => 'required|string',
             'excerpt' => 'nullable|string',
             'featured_image' => 'nullable|image|max:2048',
@@ -76,7 +76,7 @@ class BlogController extends Controller
             $validated['published_at'] = now();
         }
 
-        $post = Blog::create($validated);
+        $post = BlogPost::create($validated);
 
         return redirect()->route('admin.blog.index')
             ->with('success', 'Blog yazısı başarıyla oluşturuldu.');
@@ -85,7 +85,7 @@ class BlogController extends Controller
     /**
      * Display the specified blog post
      */
-    public function show(Blog $blog)
+    public function show(BlogPost $blog)
     {
         $blog->load('author');
 
@@ -95,7 +95,7 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified blog post
      */
-    public function edit(Blog $blog)
+    public function edit(BlogPost $blog)
     {
         return view('admin.blog.edit', compact('blog'));
     }
@@ -103,11 +103,11 @@ class BlogController extends Controller
     /**
      * Update the specified blog post in storage
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, BlogPost $blog)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255|unique:blogs,slug,' . $blog->id,
+            'slug' => 'nullable|string|max:255|unique:blog_posts,slug,' . $blog->id,
             'content' => 'required|string',
             'excerpt' => 'nullable|string',
             'featured_image' => 'nullable|image|max:2048',
@@ -144,7 +144,7 @@ class BlogController extends Controller
     /**
      * Remove the specified blog post from storage
      */
-    public function destroy(Blog $blog)
+    public function destroy(BlogPost $blog)
     {
         // Delete featured image
         if ($blog->featured_image) {

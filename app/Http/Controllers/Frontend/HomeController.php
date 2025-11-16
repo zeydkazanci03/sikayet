@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Complaint;
 use App\Models\Brand;
 use App\Models\Category;
-use App\Models\Blog;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -62,7 +62,7 @@ class HomeController extends Controller
         ];
 
         // Latest blog posts
-        $latestPosts = Blog::where('status', 'published')
+        $latestPosts = BlogPost::where('status', 'published')
             ->latest('published_at')
             ->take(3)
             ->get();
