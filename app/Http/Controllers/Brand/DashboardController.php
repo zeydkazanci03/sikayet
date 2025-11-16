@@ -29,22 +29,22 @@ class DashboardController extends Controller
         // Today's stats
         $todayStats = [
             'complaints' => $brand->complaints()->whereDate('created_at', $today)->count(),
-            'responses' => $brand->complaints()->whereDate('responded_at', $today)->count(),
-            'solved' => $brand->complaints()->where('is_solved', true)->whereDate('updated_at', $today)->count(),
+            'responses' => $brand->complaints()->whereDate('brand_first_response_at', $today)->count(),
+            'solved' => $brand->complaints()->where('is_resolved', true)->whereDate('updated_at', $today)->count(),
         ];
 
         // Week's stats
         $weekStats = [
             'complaints' => $brand->complaints()->where('created_at', '>=', $weekStart)->count(),
-            'responses' => $brand->complaints()->where('responded_at', '>=', $weekStart)->count(),
-            'solved' => $brand->complaints()->where('is_solved', true)->where('updated_at', '>=', $weekStart)->count(),
+            'responses' => $brand->complaints()->where('brand_first_response_at', '>=', $weekStart)->count(),
+            'solved' => $brand->complaints()->where('is_resolved', true)->where('updated_at', '>=', $weekStart)->count(),
         ];
 
         // Month's stats
         $monthStats = [
             'complaints' => $brand->complaints()->where('created_at', '>=', $monthStart)->count(),
-            'responses' => $brand->complaints()->where('responded_at', '>=', $monthStart)->count(),
-            'solved' => $brand->complaints()->where('is_solved', true)->where('updated_at', '>=', $monthStart)->count(),
+            'responses' => $brand->complaints()->where('brand_first_response_at', '>=', $monthStart)->count(),
+            'solved' => $brand->complaints()->where('is_resolved', true)->where('updated_at', '>=', $monthStart)->count(),
         ];
 
         // Total stats
@@ -52,7 +52,7 @@ class DashboardController extends Controller
             'complaints' => $brand->complaints()->count(),
             'pending' => $brand->complaints()->where('status', 'pending')->count(),
             'approved' => $brand->complaints()->where('status', 'approved')->count(),
-            'solved' => $brand->complaints()->where('is_solved', true)->count(),
+            'solved' => $brand->complaints()->where('is_resolved', true)->count(),
             'response_rate' => $this->calculateResponseRate($brand),
             'resolution_rate' => $this->calculateResolutionRate($brand),
         ];
@@ -68,7 +68,7 @@ class DashboardController extends Controller
         $pendingComplaints = $brand->complaints()
             ->with(['user', 'category'])
             ->where('status', 'approved')
-            ->whereNull('responded_at')
+            ->whereNull('brand_first_response_at')
             ->latest()
             ->take(5)
             ->get();
@@ -80,7 +80,7 @@ class DashboardController extends Controller
             $chartData[] = [
                 'date' => $date->format('M d'),
                 'complaints' => $brand->complaints()->whereDate('created_at', $date)->count(),
-                'responses' => $brand->complaints()->whereDate('responded_at', $date)->count(),
+                'responses' => $brand->complaints()->whereDate('brand_first_response_at', $date)->count(),
             ];
         }
 
@@ -91,7 +91,7 @@ class DashboardController extends Controller
             ->groupBy('category_id')
             ->get();
 
-        return view('brand.dashboard.index', compact(
+        return view('brand.dashboard', compact(
             'brand',
             'todayStats',
             'weekStats',
@@ -117,7 +117,7 @@ class DashboardController extends Controller
 
         $responded = $brand->complaints()
             ->where('status', 'approved')
-            ->whereNotNull('responded_at')
+            ->whereNotNull('brand_first_response_at')
             ->count();
 
         return round(($responded / $total) * 100, 2);
@@ -136,7 +136,7 @@ class DashboardController extends Controller
 
         $solved = $brand->complaints()
             ->where('status', 'approved')
-            ->where('is_solved', true)
+            ->where('is_resolved', true)
             ->count();
 
         return round(($solved / $total) * 100, 2);

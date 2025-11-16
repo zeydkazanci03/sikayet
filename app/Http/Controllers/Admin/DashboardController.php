@@ -74,7 +74,7 @@ class DashboardController extends Controller
             ];
         }
 
-        return view('admin.dashboard.index', compact(
+        return view('admin.dashboard', compact(
             'todayStats',
             'weekStats',
             'monthStats',
