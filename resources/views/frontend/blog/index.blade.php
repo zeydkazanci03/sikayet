@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <span class="badge bg-primary mb-2">Öne Çıkan</span>
                             <h2 class="h4">
-                                <a href="{{ route('blog.show', $featuredPost) }}" class="text-decoration-none text-dark">
+                                <a href="{{ route('frontend.blog.show', $featuredPost) }}" class="text-decoration-none text-dark">
                                     {{ $featuredPost->title }}
                                 </a>
                             </h2>
@@ -60,7 +60,7 @@
                                 <span class="badge bg-light text-dark">{{ $post->category->name }}</span>
                             </div>
                             <h5 class="card-title">
-                                <a href="{{ route('blog.show', $post) }}" class="text-decoration-none text-dark">
+                                <a href="{{ route('frontend.blog.show', $post) }}" class="text-decoration-none text-dark">
                                     {{ $post->title }}
                                 </a>
                             </h5>
@@ -102,13 +102,15 @@
                 </div>
                 <div class="card-body">
                     <div class="list-group list-group-flush">
+                        @if(isset($categories))
                         @foreach($categories as $category)
-                        <a href="{{ route('blog.index', ['category' => $category->slug]) }}"
+                        <a href="{{ route('frontend.blog.index', ['category' => $category->slug]) }}"
                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             {{ $category->name }}
                             <span class="badge bg-primary rounded-pill">{{ $category->posts_count }}</span>
                         </a>
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -121,7 +123,7 @@
                 <div class="card-body">
                     @foreach($popularPosts as $popular)
                     <div class="mb-3">
-                        <a href="{{ route('blog.show', $popular) }}" class="text-decoration-none">
+                        <a href="{{ route('frontend.blog.show', $popular) }}" class="text-decoration-none">
                             <strong class="d-block">{{ Str::limit($popular->title, 50) }}</strong>
                             <small class="text-muted">
                                 <i class="bi bi-eye"></i> {{ $popular->views_count }} görüntülenme
@@ -129,6 +131,7 @@
                         </a>
                     </div>
                     @endforeach
+                        @endif
                 </div>
             </div>
 
@@ -139,10 +142,11 @@
                 </div>
                 <div class="card-body">
                     @foreach($tags as $tag)
-                    <a href="{{ route('blog.index', ['tag' => $tag->slug]) }}" class="badge bg-light text-dark me-1 mb-1">
+                    <a href="{{ route('frontend.blog.index', ['tag' => $tag->slug]) }}" class="badge bg-light text-dark me-1 mb-1">
                         #{{ $tag->name }}
                     </a>
                     @endforeach
+                        @endif
                 </div>
             </div>
         </div>

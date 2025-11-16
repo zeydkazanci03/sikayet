@@ -18,7 +18,7 @@
     {{-- Filtreler --}}
     <div class="card shadow-sm mb-4">
         <div class="card-body">
-            <form action="{{ route('brands.index') }}" method="GET" class="row g-3">
+            <form action="{{ route('frontend.brands.index') }}" method="GET" class="row g-3">
                 <div class="col-md-3">
                     <label class="form-label">Kategori</label>
                     <select name="category" class="form-select">
@@ -59,9 +59,9 @@
     {{-- Alfabetik Filtre --}}
     <div class="mb-4">
         <div class="btn-group flex-wrap" role="group">
-            <a href="{{ route('brands.index') }}" class="btn btn-sm btn-outline-secondary {{ !request('letter') ? 'active' : '' }}">Tümü</a>
+            <a href="{{ route('frontend.brands.index') }}" class="btn btn-sm btn-outline-secondary {{ !request('letter') ? 'active' : '' }}">Tümü</a>
             @foreach(range('A', 'Z') as $letter)
-            <a href="{{ route('brands.index', ['letter' => $letter]) }}"
+            <a href="{{ route('frontend.brands.index', ['letter' => $letter]) }}"
                class="btn btn-sm btn-outline-secondary {{ request('letter') == $letter ? 'active' : '' }}">
                 {{ $letter }}
             </a>
@@ -98,9 +98,9 @@
         </div>
         <div class="card-body">
             <div class="row g-3">
-                @foreach($popularCategories as $category)
+                @foreach($categories as $category)
                 <div class="col-md-4 col-lg-3">
-                    <a href="{{ route('brands.index', ['category' => $category->id]) }}"
+                    <a href="{{ route('frontend.brands.index', ['category' => $category->id]) }}"
                        class="btn btn-outline-primary w-100">
                         <i class="bi bi-tag"></i> {{ $category->name }}
                         <span class="badge bg-primary ms-2">{{ $category->brands_count }}</span>

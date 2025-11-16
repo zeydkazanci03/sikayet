@@ -12,16 +12,16 @@
                     <h6 class="mb-0"><i class="bi bi-person-circle"></i> Profilim</h6>
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="{{ route('profile.show', auth()->user()) }}" class="list-group-item list-group-item-action">
+                    <a href="{{ route('frontend.profile.show', auth()->user()) }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-person"></i> Profilim
                     </a>
-                    <a href="{{ route('profile.complaints') }}" class="list-group-item list-group-item-action">
+                    <a href="{{ route('frontend.profile.complaints') }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-megaphone"></i> Şikayetlerim
                     </a>
-                    <a href="{{ route('profile.notifications') }}" class="list-group-item list-group-item-action active">
+                    <a href="{{ route('frontend.profile.notifications') }}" class="list-group-item list-group-item-action active">
                         <i class="bi bi-bell"></i> Bildirimler
                     </a>
-                    <a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action">
+                    <a href="{{ route('frontend.profile.edit') }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-gear"></i> Ayarlar
                     </a>
                 </div>
@@ -157,7 +157,7 @@
                     <h5 class="mb-0"><i class="bi bi-gear"></i> Bildirim Ayarları</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('profile.notification-settings') }}" method="POST">
+                    <form action="{{ route('frontend.profile.notification-settings') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <div class="form-check form-switch">

@@ -139,7 +139,7 @@
             @auth
             <div class="card shadow-sm mb-4">
                 <div class="card-body text-center">
-                    <a href="{{ route('complaints.create', ['brand' => $brand->id]) }}" class="btn btn-primary btn-lg w-100">
+                    <a href="{{ route('frontend.complaints.create', ['brand' => $brand->id]) }}" class="btn btn-primary btn-lg w-100">
                         <i class="bi bi-megaphone"></i> Şikayet Yaz
                     </a>
                 </div>
@@ -219,7 +219,7 @@
                     <div class="d-flex align-items-center mb-3">
                         <img src="{{ $similar->logo_url }}" alt="{{ $similar->name }}" class="me-2" style="width: 40px; height: 40px;">
                         <div class="flex-grow-1">
-                            <a href="{{ route('brands.show', $similar) }}" class="text-decoration-none">
+                            <a href="{{ route('frontend.brands.show', $similar) }}" class="text-decoration-none">
                                 <strong>{{ $similar->name }}</strong>
                             </a>
                             <div class="text-muted small">{{ $similar->complaints_count }} şikayet</div>

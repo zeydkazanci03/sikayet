@@ -33,17 +33,17 @@
                     <h5 class="mb-3">Popüler Sayfalar</h5>
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <a href="{{ route('complaints.index') }}" class="btn btn-outline-primary w-100">
+                            <a href="{{ route('frontend.complaints.index') }}" class="btn btn-outline-primary w-100">
                                 <i class="bi bi-megaphone"></i> Şikayetler
                             </a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('brands.index') }}" class="btn btn-outline-primary w-100">
+                            <a href="{{ route('frontend.brands.index') }}" class="btn btn-outline-primary w-100">
                                 <i class="bi bi-building"></i> Markalar
                             </a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('blog.index') }}" class="btn btn-outline-primary w-100">
+                            <a href="{{ route('frontend.blog.index') }}" class="btn btn-outline-primary w-100">
                                 <i class="bi bi-newspaper"></i> Blog
                             </a>
                         </div>

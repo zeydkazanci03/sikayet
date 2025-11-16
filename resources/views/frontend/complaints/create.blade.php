@@ -20,7 +20,7 @@
 
                     <x-form-errors />
 
-                    <form action="{{ route('complaints.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('frontend.complaints.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         {{-- Marka Seçimi --}}

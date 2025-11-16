@@ -98,7 +98,7 @@
                         <div class="col-md-{{ $post->featured_image ? '9' : '12' }}">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="{{ route('blog.show', $post) }}" class="text-decoration-none text-dark">
+                                    <a href="{{ route('frontend.blog.show', $post) }}" class="text-decoration-none text-dark">
                                         {{ $post->title }}
                                     </a>
                                 </h5>

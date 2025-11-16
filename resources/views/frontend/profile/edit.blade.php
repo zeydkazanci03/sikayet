@@ -20,7 +20,7 @@
 
                     <x-form-errors />
 
-                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('frontend.profile.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -183,7 +183,7 @@
                             <button type="submit" class="btn btn-primary btn-lg">
                                 <i class="bi bi-check-circle"></i> Değişiklikleri Kaydet
                             </button>
-                            <a href="{{ route('profile.show', auth()->user()) }}" class="btn btn-outline-secondary">
+                            <a href="{{ route('frontend.profile.show', auth()->user()) }}" class="btn btn-outline-secondary">
                                 <i class="bi bi-x-circle"></i> İptal
                             </a>
                         </div>
@@ -209,7 +209,7 @@
 
 {{-- Hesap Silme Modal --}}
 <x-modal id="deleteAccountModal" title="Hesabı Sil">
-    <form action="{{ route('profile.destroy') }}" method="POST">
+    <form action="{{ route('frontend.profile.destroy') }}" method="POST">
         @csrf
         @method('DELETE')
         <div class="modal-body">

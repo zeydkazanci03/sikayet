@@ -14,7 +14,7 @@
                     <p class="text-muted small mb-3">{{ '@' . $user->username }}</p>
 
                     @if(auth()->check() && auth()->id() === $user->id)
-                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-primary btn-sm w-100 mb-2">
+                    <a href="{{ route('frontend.profile.edit') }}" class="btn btn-outline-primary btn-sm w-100 mb-2">
                         <i class="bi bi-pencil"></i> Profili Düzenle
                     </a>
                     @else
@@ -136,7 +136,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-2">
                                 <small class="text-muted">
-                                    <a href="{{ route('complaints.show', $comment->complaint) }}">
+                                    <a href="{{ route('frontend.complaints.show', $comment->complaint) }}">
                                         {{ $comment->complaint->title }}
                                     </a> üzerine yorum yaptı
                                 </small>

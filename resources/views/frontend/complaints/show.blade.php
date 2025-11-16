@@ -25,7 +25,7 @@
                 <div class="card-body">
                     {{-- Marka ve Kategori --}}
                     <div class="mb-3">
-                        <a href="{{ route('brands.show', $complaint->brand) }}" class="text-decoration-none">
+                        <a href="{{ route('frontend.brands.show', $complaint->brand) }}" class="text-decoration-none">
                             <img src="{{ $complaint->brand->logo_url }}" alt="{{ $complaint->brand->name }}" class="me-2" style="height: 30px;">
                             <strong>{{ $complaint->brand->name }}</strong>
                         </a>
@@ -76,7 +76,7 @@
                         @auth
                             @if($complaint->user_id === auth()->id())
                             <div>
-                                <a href="{{ route('complaints.edit', $complaint) }}" class="btn btn-sm btn-outline-primary">
+                                <a href="{{ route('frontend.complaints.edit', $complaint) }}" class="btn btn-sm btn-outline-primary">
                                     <i class="bi bi-pencil"></i> Düzenle
                                 </a>
                             </div>
@@ -175,7 +175,7 @@
                     <h6 class="card-title">Benzer Şikayetler</h6>
                     @foreach($similarComplaints as $similar)
                     <div class="mb-3">
-                        <a href="{{ route('complaints.show', $similar) }}" class="text-decoration-none">
+                        <a href="{{ route('frontend.complaints.show', $similar) }}" class="text-decoration-none">
                             <strong class="d-block">{{ Str::limit($similar->title, 60) }}</strong>
                             <small class="text-muted">{{ $similar->brand->name }} • {{ $similar->created_at->diffForHumans() }}</small>
                         </a>

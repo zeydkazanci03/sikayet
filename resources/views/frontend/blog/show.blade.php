@@ -12,7 +12,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Ana Sayfa</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('blog.index') }}">Blog</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('frontend.blog.index') }}">Blog</a></li>
                             <li class="breadcrumb-item active">{{ $post->title }}</li>
                         </ol>
                     </nav>
@@ -50,7 +50,7 @@
                     <div class="mt-4 pt-4 border-top">
                         <h6 class="text-muted">Etiketler:</h6>
                         @foreach($post->tags as $tag)
-                        <a href="{{ route('blog.index', ['tag' => $tag->slug]) }}" class="badge bg-light text-dark me-1">
+                        <a href="{{ route('frontend.blog.index', ['tag' => $tag->slug]) }}" class="badge bg-light text-dark me-1">
                             #{{ $tag->name }}
                         </a>
                         @endforeach
@@ -77,7 +77,7 @@
                 </div>
                 <div class="card-body">
                     @auth
-                    <form action="{{ route('blog.comments.store', $post) }}" method="POST" class="mb-4">
+                    <form action="{{ route('frontend.blog.comments.store', $post) }}" method="POST" class="mb-4">
                         @csrf
                         <div class="mb-3">
                             <textarea name="content" class="form-control" rows="3" placeholder="Yorumunuzu yazın..." required></textarea>
@@ -125,7 +125,7 @@
                             @endif
                             <div class="card-body">
                                 <h6 class="card-title">
-                                    <a href="{{ route('blog.show', $related) }}" class="text-decoration-none text-dark">
+                                    <a href="{{ route('frontend.blog.show', $related) }}" class="text-decoration-none text-dark">
                                         {{ Str::limit($related->title, 60) }}
                                     </a>
                                 </h6>
@@ -149,7 +149,7 @@
                 <div class="card-body">
                     @foreach($popularPosts as $popular)
                     <div class="mb-3">
-                        <a href="{{ route('blog.show', $popular) }}" class="text-decoration-none">
+                        <a href="{{ route('frontend.blog.show', $popular) }}" class="text-decoration-none">
                             <strong class="d-block">{{ Str::limit($popular->title, 50) }}</strong>
                             <small class="text-muted">{{ $popular->created_at->format('d M Y') }}</small>
                         </a>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="card-body">
                     @foreach($categories as $category)
-                    <a href="{{ route('blog.index', ['category' => $category->slug]) }}"
+                    <a href="{{ route('frontend.blog.index', ['category' => $category->slug]) }}"
                        class="d-block mb-2 text-decoration-none">
                         {{ $category->name }}
                         <span class="badge bg-light text-dark float-end">{{ $category->posts_count }}</span>

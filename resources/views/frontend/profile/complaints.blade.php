@@ -12,19 +12,19 @@
                     <h6 class="mb-0"><i class="bi bi-person-circle"></i> Profilim</h6>
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="{{ route('profile.show', auth()->user()) }}" class="list-group-item list-group-item-action">
+                    <a href="{{ route('frontend.profile.show', auth()->user()) }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-person"></i> Profilim
                     </a>
-                    <a href="{{ route('profile.complaints') }}" class="list-group-item list-group-item-action active">
+                    <a href="{{ route('frontend.profile.complaints') }}" class="list-group-item list-group-item-action active">
                         <i class="bi bi-megaphone"></i> Şikayetlerim
                     </a>
-                    <a href="{{ route('profile.notifications') }}" class="list-group-item list-group-item-action">
+                    <a href="{{ route('frontend.profile.notifications') }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-bell"></i> Bildirimler
                         @if($unreadNotifications > 0)
                         <span class="badge bg-danger float-end">{{ $unreadNotifications }}</span>
                         @endif
                     </a>
-                    <a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action">
+                    <a href="{{ route('frontend.profile.edit') }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-gear"></i> Ayarlar
                     </a>
                 </div>
@@ -36,7 +36,7 @@
                 <div class="card-header bg-white">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4 class="mb-0"><i class="bi bi-megaphone"></i> Şikayetlerim</h4>
-                        <a href="{{ route('complaints.create') }}" class="btn btn-primary">
+                        <a href="{{ route('frontend.complaints.create') }}" class="btn btn-primary">
                             <i class="bi bi-plus-circle"></i> Yeni Şikayet
                         </a>
                     </div>
@@ -100,7 +100,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <h5 class="mb-0">
-                                    <a href="{{ route('complaints.show', $complaint) }}" class="text-decoration-none text-dark">
+                                    <a href="{{ route('frontend.complaints.show', $complaint) }}" class="text-decoration-none text-dark">
                                         {{ $complaint->title }}
                                     </a>
                                 </h5>
@@ -110,7 +110,7 @@
                             </div>
 
                             <div class="text-muted small mb-2">
-                                <a href="{{ route('brands.show', $complaint->brand) }}" class="text-decoration-none">
+                                <a href="{{ route('frontend.brands.show', $complaint->brand) }}" class="text-decoration-none">
                                     {{ $complaint->brand->name }}
                                 </a>
                                 • {{ $complaint->category->name }}
@@ -126,11 +126,11 @@
                                     <span class="ms-2"><i class="bi bi-chat"></i> {{ $complaint->comments_count }}</span>
                                 </div>
                                 <div class="btn-group btn-group-sm">
-                                    <a href="{{ route('complaints.show', $complaint) }}" class="btn btn-outline-primary">
+                                    <a href="{{ route('frontend.complaints.show', $complaint) }}" class="btn btn-outline-primary">
                                         <i class="bi bi-eye"></i> Görüntüle
                                     </a>
                                     @if($complaint->status === 'pending')
-                                    <a href="{{ route('complaints.edit', $complaint) }}" class="btn btn-outline-secondary">
+                                    <a href="{{ route('frontend.complaints.edit', $complaint) }}" class="btn btn-outline-secondary">
                                         <i class="bi bi-pencil"></i> Düzenle
                                     </a>
                                     <button type="button" class="btn btn-outline-danger" onclick="deleteComplaint({{ $complaint->id }})">
@@ -154,7 +154,7 @@
                         <i class="bi bi-info-circle fs-1 d-block mb-2"></i>
                         <h5>Şikayet Bulunamadı</h5>
                         <p class="mb-3">Henüz hiç şikayet oluşturmadınız.</p>
-                        <a href="{{ route('complaints.create') }}" class="btn btn-primary">
+                        <a href="{{ route('frontend.complaints.create') }}" class="btn btn-primary">
                             <i class="bi bi-plus-circle"></i> İlk Şikayetinizi Oluşturun
                         </a>
                     </div>
