@@ -152,7 +152,7 @@ class ComplaintController extends Controller
 
         $complaint = Complaint::create($validated);
 
-        return redirect()->route('complaints.show', [
+        return redirect()->route('frontend.complaints.show', [
             'brand' => $complaint->brand->slug,
             'number' => $complaint->complaint_number
         ])->with('success', 'Şikayetiniz başarıyla oluşturuldu ve moderasyon bekliyor.');

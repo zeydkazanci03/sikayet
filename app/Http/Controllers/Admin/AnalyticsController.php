@@ -58,66 +58,6 @@ class AnalyticsController extends Controller
         ));
     }
 
-    /**
-     * Show the form for creating analytics reports
-     */
-    public function create()
-    {
-        return view('admin.analytics.create');
-    }
-
-    /**
-     * Generate and store a custom analytics report
-     */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'type' => 'required|in:complaints,users,brands,categories',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-        ]);
-
-        // Generate report based on type and date range
-        // This is a placeholder for custom report generation
-
-        return redirect()->route('admin.analytics.index')
-            ->with('success', 'Rapor başarıyla oluşturuldu.');
-    }
-
-    /**
-     * Display the specified analytics report
-     */
-    public function show($id)
-    {
-        return view('admin.analytics.show');
-    }
-
-    /**
-     * Show the form for editing analytics settings
-     */
-    public function edit($id)
-    {
-        return view('admin.analytics.edit');
-    }
-
-    /**
-     * Update analytics settings
-     */
-    public function update(Request $request, $id)
-    {
-        return redirect()->route('admin.analytics.index')
-            ->with('success', 'Ayarlar güncellendi.');
-    }
-
-    /**
-     * Delete analytics report
-     */
-    public function destroy($id)
-    {
-        return redirect()->route('admin.analytics.index')
-            ->with('success', 'Rapor silindi.');
-    }
 
     /**
      * Get daily statistics

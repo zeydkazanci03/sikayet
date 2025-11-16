@@ -63,14 +63,6 @@ class ModerationController extends Controller
     }
 
     /**
-     * Show the form for creating a new moderation action
-     */
-    public function create()
-    {
-        return view('admin.moderation.create');
-    }
-
-    /**
      * Store a newly created moderation action in storage
      */
     public function store(Request $request)
@@ -100,41 +92,6 @@ class ModerationController extends Controller
 
         return redirect()->route('admin.moderation.index')
             ->with('success', 'Moderasyon işlemi başarıyla tamamlandı.');
-    }
-
-    /**
-     * Display the specified moderation item
-     */
-    public function show($id)
-    {
-        // This method can be used to show detailed moderation history
-        return view('admin.moderation.show');
-    }
-
-    /**
-     * Show the form for editing the specified moderation action
-     */
-    public function edit($id)
-    {
-        return view('admin.moderation.edit');
-    }
-
-    /**
-     * Update the specified moderation action in storage
-     */
-    public function update(Request $request, $id)
-    {
-        return redirect()->route('admin.moderation.index')
-            ->with('success', 'Moderasyon işlemi güncellendi.');
-    }
-
-    /**
-     * Remove the specified moderation action from storage
-     */
-    public function destroy($id)
-    {
-        return redirect()->route('admin.moderation.index')
-            ->with('success', 'Moderasyon işlemi silindi.');
     }
 
     /**

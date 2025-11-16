@@ -105,8 +105,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
 
     // Moderation
-    Route::get('moderation/queue', [ModerationController::class, 'queue'])->name('moderation.queue');
-    Route::resource('moderation/rules', ModerationController::class);
+    Route::get('moderation', [ModerationController::class, 'index'])->name('moderation.index');
+    Route::post('moderation', [ModerationController::class, 'store'])->name('moderation.store');
 
     // Analytics
     Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics');

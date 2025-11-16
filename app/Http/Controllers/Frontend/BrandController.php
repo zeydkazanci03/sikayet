@@ -131,7 +131,7 @@ class BrandController extends Controller
         $query = $request->get('q');
 
         if (empty($query)) {
-            return redirect()->route('brands.index');
+            return redirect()->route('frontend.brands.index');
         }
 
         $brands = Brand::where('status', 'approved')
