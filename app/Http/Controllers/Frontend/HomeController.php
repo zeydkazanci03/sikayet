@@ -67,7 +67,7 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('frontend.home.index', compact(
+        return view('frontend.home', compact(
             'featuredBrands',
             'recentComplaints',
             'popularComplaints',
@@ -116,7 +116,7 @@ class HomeController extends Controller
             ->withCount('complaints')
             ->get();
 
-        return view('frontend.search.results', compact(
+        return view('frontend.search-results', compact(
             'query',
             'complaints',
             'brands',
