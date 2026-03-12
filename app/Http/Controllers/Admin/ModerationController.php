@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\SafeController;
 use App\Models\Complaint;
 use App\Models\Comment;
 use App\Models\Brand;

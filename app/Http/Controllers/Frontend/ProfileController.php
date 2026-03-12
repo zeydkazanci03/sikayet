@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\SafeController;
 use App\Models\User;
 use App\Models\Complaint;
 use Illuminate\Http\Request;
